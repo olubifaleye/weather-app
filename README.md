@@ -1,1 +1,26 @@
-# weather-app
+# Weather Application
+This is a Weather Application built with Python Django and JavaScript. It allows users to check the current weather conditions for a specific location. The application utilizes the OpenWeatherMap API to fetch weather data and provides a user-friendly interface to display this information.
+
+## Features
+
+- Weather Information: Users can enter a City to retrieve thier current weather data, including the City's name, temperature, short weather description and 5-day forecast.
+- Compare Weather Information: Users can compare weather data between 2 different cities.
+
+## Installation
+
+### Prerequisites
+- Python 3.7+
+- Django
+- JavaScript (for front-end)
+- OpenWeatherMap API Key (Get one here)
+
+## Usage
+
+1. Open the application in your web browser.
+2. Enter a City name in the first search bar, the second search bar is optional.
+3. Click the "Compare Weather" button to fetch and display the current weather information for the specified location(s).
+
+# Acknowledgments
+
+- The Weather Application is built using Django and JavaScript.
+- Weather data is provided by the OpenWeatherMap API.
