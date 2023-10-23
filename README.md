@@ -12,7 +12,7 @@ This is a Weather Application built with Python Django and JavaScript. It allows
 - Python 3.7+
 - Django
 - JavaScript (for front-end)
-- OpenWeatherMap API Key (Get one here)
+- OpenWeatherMap API Key [Get one here](https://openweathermap.org/)
 
 ## Usage
 
