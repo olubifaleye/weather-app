@@ -1,17 +1,30 @@
 <!-- If statement to display weather data for each City -->
 
 {% if weather_data %}
-    <h1>{{ weather_data.city }}</h1>
-    <h2>{{ weather_data.temperature }}</h2>
-    <p> {{weather_data.description }}</p>
-    <img src="http://openweathermap.org/img/w/{{ weather_data.icon }}.png" alt="{{ weather_data.description}}">
+    <div class="current-container">
+        <h1>{{ weather_data.city }}</h1>
+
+
+        <div class="temp-description-container">
+            <h2>{{ weather_data.temperature }}</h2>
+            <p> | </p>
+            <p class="desc">{{weather_data.description }}</p>
+        </div>        
+
+        <div class="humidity-wind-container">
+            <p class="hw-item">H:{{ weather_data.humidity }}%</p>
+            <p class="hw-item">W:{{ weather_data.wind_speed }} mph</p>
+        </div>
+
+        <img src="http://openweathermap.org/img/w/{{ weather_data.icon }}.png" alt="{{ weather_data.description}}">
+    </div>
 {% endif %}
 
 
 <!-- 5-day Weather data for each City -->
 
 {% if daily_forecasts %}
-    <h2>5-Day Forecasts</h2>
+    <h2 class="forecast-title">5-Day Forecasts</h2>
     <div class="forecast-container">
 
         <!-- for loop to loop through each day in the 5 day list of forecast data -->
@@ -19,10 +32,19 @@
         
         {% for forecast in daily_forecasts %}
             <div class="forecast">
-                <h3{{ forecast.day }}></h3>
+                <h3>{{ forecast.day }}</h3>
                 <p>{{ forecast.min_temp }}°C - {{ forecast.max_temp }}°C</p>
-                <p>{{ forecast.description }}</p>
-                <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="{{ forecast.description}}">
+
+                <div class="humidity-wind-container">
+                    <p class="hw-item">H:{{ forecast.humidity }}%</p>
+                    <p class="hw-item">W:{{ forecast.wind_speed }} mph</p>
+                </div>
+
+                <div class="icon-description-container">
+                    <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="{{ forecast.description}}">
+                    <p> | </p>
+                    <p class="desc">{{forecast.description }}</p>
+                </div>
             </div>
         {% endfor %}
     </div>

@@ -1,5 +1,5 @@
 # Imports
-import datetime
+from datetime import datetime
 
 import requests
 from django.shortcuts import render
@@ -76,8 +76,10 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_weat
     # for temperature get response temperature value (in Kelvin) and minus 273.15 and round to 2 dp
     weather_data = {
         "city": city,
-        "temperature": round(response['main']['temp'] - 273.15, 2),
+        "temperature": str(round(response['main']['temp'] - 273.15, 2)) + "°C",
         "description": response['weather'][0]['description'],
+        "humidity": response['main']['humidity'],
+        "wind_speed": response['wind']['speed'],
         "icon": response['weather'][0]['icon'] 
     }
 
@@ -87,11 +89,17 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_weat
     # Look at 5 days
     for data in forecast_response['daily'][:5]:
 
+        # Get timestamp for the day of the forecast
+        timestamp = data['dt']
+        date_time = datetime.fromtimestamp(timestamp)
+
         # append day data to daily_forecasts list as dictionary inputs
         daily_forecasts.append({
-            "day": datetime.datetime.fromtimestamp(data['dt']).strftime("%A"),
+            "day": date_time.strftime("%A"),
             "min_temp": round(data['temp']['min'] - 273.15, 2),
-            "min_temp": round(data['temp']['max'] - 273.15, 2),            
+            "max_temp": round(data['temp']['max'] - 273.15, 2),
+            "humidity": response['main']['humidity'],
+            "wind_speed": response['wind']['speed'],            
             "description": data['weather'][0]['description'],
             "icon": data['weather'][0]['icon'] 
         })

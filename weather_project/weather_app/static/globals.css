@@ -1,0 +1,139 @@
+body {
+    font-family: Trebuchet MS;
+    padding: 50px;
+}
+  
+form {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 150px;
+}
+  
+input[type="text"] {
+    padding: 25px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 100%;
+}
+  
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 25px 40px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 100%;
+}
+
+/* Rounded border */
+hr.rounded {
+    border-top: 4px solid white;
+    border-radius: 5px;
+    margin-bottom: 100px;
+    width: 70%;
+  }
+
+.city-container{
+    margin-bottom: 10vh;
+}
+
+.current-container{
+    text-align: center;
+    text-shadow: 1px 1px 1px #000000;
+}
+  
+.forecast-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.humidity-wind-container{
+    display: flex;
+    justify-content: center;
+}
+
+.temp-description-container, .icon-description-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hw-item{
+    margin: 0px 5px;
+}
+
+.desc{
+   text-align: center;
+}
+  
+.forecast {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    margin: 10px;
+    width: calc(100% / 5 - 20px);
+    box-sizing: border-box;
+    text-align: center;
+    opacity: 0.85;
+}
+
+.forecast-title{
+    color: white;
+    padding-left: 5px;
+    font-weight: bold;
+    text-shadow: 1px 1px 1px #000000;
+}
+  
+@media (max-width: 767px) {
+    .forecast {
+        width: calc(50% - 20px);
+    }
+
+    #background-video { display: none; }
+    body {
+      background: url("https://v3.cdnpk.net/videvo_files/video/free/2014-06/thumbnails/Blue_Sky_and_Clouds_Timelapse_0892__Videvo_small.jpg") no-repeat;
+      background-size: cover;
+    }
+}
+  
+@media (max-width: 480px) {
+    .forecast {
+      width: 100%;
+    }
+}
+
+/* video background */
+#background-video {
+    height: 100vh;
+    width: 100vw;
+    object-fit: cover;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: -1;
+  }
+
+.header, .sub-header {
+    color: white;
+    font-family: Trebuchet MS;
+    font-weight: bold;
+    text-align: center;
+}
+  
+.header {
+    font-size: 6rem;
+    margin-top: 25vh;
+    margin-bottom: 2vh; 
+}
+  
+.sub-header { 
+    font-size: 3rem;
+    margin-top: 2vh;
+    margin-bottom: 15vh;
+ }
