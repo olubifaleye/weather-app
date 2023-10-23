@@ -65,44 +65,54 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_weat
     # take city and API Key as format in JSON
     response = requests.get(current_weather_url.format(city, api_key)).json()
 
-    # Extract Long and Lat Coordinates
-    lat = response['coord']['lat']
-    lon = response['coord']['lon']
+    if response['cod'] == 200:
 
-    # Extract Long and Lat Coordinates from forecast weather as format in JSON
-    forecast_response = requests.get(forecast_weather_url.format(lat,lon,api_key)).json()
+        # Extract Long and Lat Coordinates
+        lat = response['coord']['lat']
+        lon = response['coord']['lon']
 
-    # Store into a dictionary to pass into template
-    # for temperature get response temperature value (in Kelvin) and minus 273.15 and round to 2 dp
-    weather_data = {
-        "city": city,
-        "temperature": str(round(response['main']['temp'] - 273.15, 2)) + "°C",
-        "description": response['weather'][0]['description'],
-        "humidity": response['main']['humidity'],
-        "wind_speed": response['wind']['speed'],
-        "icon": response['weather'][0]['icon'] 
-    }
+        # Extract Long and Lat Coordinates from forecast weather as format in JSON
+        forecast_response = requests.get(forecast_weather_url.format(lat,lon,api_key)).json()
 
-    # Daily forecasts list
-    daily_forecasts = []
-
-    # Look at 5 days
-    for data in forecast_response['daily'][:5]:
-
-        # Get timestamp for the day of the forecast
-        timestamp = data['dt']
-        date_time = datetime.fromtimestamp(timestamp)
-
-        # append day data to daily_forecasts list as dictionary inputs
-        daily_forecasts.append({
-            "day": date_time.strftime("%A"),
-            "min_temp": round(data['temp']['min'] - 273.15, 2),
-            "max_temp": round(data['temp']['max'] - 273.15, 2),
+        # Store into a dictionary to pass into template
+        # for temperature get response temperature value (in Kelvin) and minus 273.15 and round to 2 dp
+        weather_data = {
+            "city": city,
+            "temperature": str(round(response['main']['temp'] - 273.15, 2)) + "°C",
+            "description": response['weather'][0]['description'],
             "humidity": response['main']['humidity'],
-            "wind_speed": response['wind']['speed'],            
-            "description": data['weather'][0]['description'],
-            "icon": data['weather'][0]['icon'] 
-        })
+            "wind_speed": response['wind']['speed'],
+            "icon": response['weather'][0]['icon'] 
+        }
 
-    # return weather data and daily forecast data collected
-    return weather_data, daily_forecasts
+        # Daily forecasts list
+        daily_forecasts = []
+
+        # Look at 5 days
+        for data in forecast_response['daily'][:5]:
+
+            # Get timestamp for the day of the forecast
+            timestamp = data['dt']
+            date_time = datetime.fromtimestamp(timestamp)
+
+            # append day data to daily_forecasts list as dictionary inputs
+            daily_forecasts.append({
+                "day": date_time.strftime("%A"),
+                "min_temp": round(data['temp']['min'] - 273.15, 2),
+                "max_temp": round(data['temp']['max'] - 273.15, 2),
+                "humidity": data['humidity'],
+                "wind_speed": data['wind_speed'],            
+                "description": data['weather'][0]['description'],
+                "icon": data['weather'][0]['icon'] 
+            })
+
+        # return weather data and daily forecast data collected
+        return weather_data, daily_forecasts
+    
+    else:
+        # Set the data collections to be empty as the city doesn't exist
+        weather_data = {}
+        daily_forecasts = []
+
+        # return weather data and daily forecast 
+        return weather_data, daily_forecasts;
