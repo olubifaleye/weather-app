@@ -10,13 +10,13 @@ from django.shortcuts import render
 def index(request):
 
     # load the API_key
-    API_KEY = open("API_KEY", "r").read();
+    API_KEY = open("API_KEY", "r").read()
 
     # Current weather URL to target
     current_weather_url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}"
 
     # Forecasrt weather URL to target
-    forecast_weather_url = "https://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&exclude=current,minutely,hourly,alert&&appid={}"
+    forecast_weather_url = "https://api.openweathermap.org/data/2.5/onecall?lat={}&lon={}&exclude=current,minutely,hourly,alerts&appid={}"
 
     # Check if request is GET or POST
     if request.method == "POST":
@@ -25,8 +25,8 @@ def index(request):
         city1 = request.POST['city1']
 
         # Make city2 optional
-        # try to get, if it doesnt exist, pass
-        city2 = request.get('city2', None)
+        # try to POST get, if it doesnt exist, pass
+        city2 = request.POST.get('city2', None)
 
 
         # Fetch information from the forecast and render into the data template
@@ -36,7 +36,7 @@ def index(request):
         if city2:
 
             # Create fetch variables for forecast information
-            weather_data2, daily_forecasts2 = fetch_weather_and_forecast(city1, API_KEY, current_weather_url, forecast_weather_url)
+            weather_data2, daily_forecasts2 = fetch_weather_and_forecast(city2, API_KEY, current_weather_url, forecast_weather_url)
         else:
             # If not set to None
             weather_data2, daily_forecasts2 = None, None
@@ -45,8 +45,8 @@ def index(request):
         context = {
             "weather_data1": weather_data1,
             "daily_forecasts1": daily_forecasts1,
-            "weather_data1": weather_data2,
-            "daily_forecasts1": daily_forecasts2,
+            "weather_data2": weather_data2,
+            "daily_forecasts2": daily_forecasts2,
         }
 
         # render a html template
@@ -63,14 +63,14 @@ def fetch_weather_and_forecast(city, api_key, current_weather_url, forecast_weat
 
     # send GET request to the current forecast url 
     # take city and API Key as format in JSON
-    response = requests.get(current_weather_url.format(city, api_key)).json();
+    response = requests.get(current_weather_url.format(city, api_key)).json()
 
     # Extract Long and Lat Coordinates
     lat = response['coord']['lat']
     lon = response['coord']['lon']
 
     # Extract Long and Lat Coordinates from forecast weather as format in JSON
-    forecast_response = requests.get(forecast_weather_url.format(lat,lon,api_key)).json();
+    forecast_response = requests.get(forecast_weather_url.format(lat,lon,api_key)).json()
 
     # Store into a dictionary to pass into template
     # for temperature get response temperature value (in Kelvin) and minus 273.15 and round to 2 dp
