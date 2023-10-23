@@ -6,12 +6,40 @@
 
     </head>
 
-    <body>
+    <body> 
+
+        <!-- Web application form template -->
         <form method="post">
+
+            <!-- Pass a csrf token in -->
+            {% csrf_token %}
             <input type="text" name="city1" placeholder="Enter your First City">
             <input type="text" name="city2" placeholder="Enter your Second City">
             <button type="submit">Compare Weather</button>
         </form>
+
+        <!-- Display fetched weather data -->
+        <div class="comparison-container">
+
+            <!-- IF statement to dictate which fetched data gets displayed if the weather data exists -->
+            
+            {% if weather_data1 %}
+                <div class="city-container">
+                    <!-- Include weather data into DIV containers -->
+                    {% include 'weather_app/city_weather.html with weather_data=weather_data1 daily_forecasts=daily_forecasts1 %}
+
+                </div>
+            {% endif %}
+
+            {% if weather_data2 %}
+                <div class="city-container">
+
+                    <!-- Include weather data into DIV containers -->
+                    {% include 'weather_app/city_weather.html with weather_data=weather_data2 daily_forecasts=daily_forecasts2 %}
+                </div>
+            {% endif %}
+
+        </div>
     </body>
 
 </html>
