@@ -13,6 +13,7 @@ This is a Weather Application built with Python Django and JavaScript. It allows
 - Django
 - JavaScript (for front-end)
 - OpenWeatherMap API Key [Get one here](https://openweathermap.org/)
+- You must create a file in weather_project directory called "API_KEY". This is were you will store your own OpenWeatherMap API Key
 
 ## Usage
 
