@@ -3,7 +3,7 @@ This is a Weather Application built with Python Django and JavaScript. It allows
 
 ## Features
 
-- Weather Information: Users can enter a City to retrieve thier current weather data, including the City's name, temperature, short weather description and 5-day forecast.
+- Weather Information: Users can enter a City to retrieve thier current weather data, including the City's name, temperature, humidity, wind speed, short weather description and 5-day forecast.
 - Compare Weather Information: Users can compare weather data between 2 different cities.
 
 ## Installation
