@@ -2,19 +2,26 @@ body {
     font-family: Trebuchet MS;
     padding: 50px;
 }
+
+.icon-container{
+    display: flex;
+    justify-content: center; /* Horizontal centering */
+    align-items: center; /* Vertical centering */
+}
   
-form {
+.city-form {
     text-align: center;
     margin-top: 20px;
     margin-bottom: 150px;
 }
   
-input[type="text"] {
+.city-input{
     padding: 25px;
     margin-right: 10px;
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 100%;
+    text-align: center;
 }
   
 button {
@@ -31,6 +38,7 @@ button {
 hr.rounded {
     border-top: 4px solid white;
     border-radius: 5px;
+    margin-top: 900;
     margin-bottom: 100px;
     width: 70%;
   }

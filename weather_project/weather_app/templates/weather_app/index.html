@@ -6,11 +6,35 @@
         <meta charset="UTF-8">
         <title>Weather App</title>
         <link rel="stylesheet" href="{% static 'globals.css' %}">
+        <link rel="stylesheet" href="{% static 'materialize.min.css' %}">
+
+        <style>
+            input {
+              text-align: center;
+            }
+            ::-webkit-input-placeholder {
+              text-align: center;
+            }
+            :-moz-placeholder {
+              text-align: center;
+            }
+          </style>
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
-    <script src="{% static 'formValidation.js' %}"></script>
+    <body>
+        
+        <!-- Added static materialize JS script  -->
+        <script src="{% static 'materialize.min.js' %}"></script>
 
-    <body> 
+        {% if messages %}
+            {% for message in messages %}
+
+                <!-- Inline Script for toasts using materialize -->
+                <script>M.toast({html: "{{message}}", classes: 'green rounded', displayLength:2000});</script>
+            {% endfor %}
+        {% endif %}
 
         <!-- Background video -->
         <video id="background-video" autoplay loop muted poster="https://v3.cdnpk.net/videvo_files/video/free/2014-06/thumbnails/Blue_Sky_and_Clouds_Timelapse_0892__Videvo_small.jpg">
@@ -21,13 +45,13 @@
         <h2 class="sub-header">Compare it.</h2>
 
         <!-- Web application form template -->
-        <form name="cityForm" method="post" onsubmit="return validateForm()">
+        <form name="cityForm" method="post" class="city-form">
 
             <!-- Pass a csrf token in -->
             {% csrf_token %}
-            <input type="text" name="city1" placeholder="Enter your First City" required oninvalid="this.setCustomValidity('Enter a City name')" oninput="this.setCustomValidity('')">
-            <input type="text" name="city2" placeholder="Enter your Second City">
-            <button type="submit">Compare Weather</button>
+            <input type="text" class="city-input" name="city1" placeholder="Enter your First City" required oninvalid="this.setCustomValidity('Enter a City name')" oninput="this.setCustomValidity('')">
+            <input type="text" class="city-input" name="city2" placeholder="Enter your Second City">
+            <button type="submit" id="loadButton">Compare Weather</button>
         </form>
 
         <!-- Display fetched weather data -->
@@ -36,12 +60,18 @@
             <!-- IF statement to dictate which fetched data gets displayed if the weather data exists -->
             
             {% if weather_data1 %}
+
+                <!-- Materialize class CSS to center the div and div children (Materialize icon) -->
+                <div class="center">
+                    <i class="large material-icons">arrow_drop_down</i>
+                </div>
+
+                <!-- Divider -->
                 <hr class="rounded">
 
                 <div class="city-container">
                     <!-- Include weather data into DIV containers -->
                     {% include 'weather_app/city_weather.html' with weather_data=weather_data1 daily_forecasts=daily_forecasts1 %}
-
                 </div>
             {% endif %}
 
@@ -55,5 +85,4 @@
 
         </div>
     </body>
-
 </html>

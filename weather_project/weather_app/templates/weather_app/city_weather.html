@@ -2,11 +2,11 @@
 
 {% if weather_data %}
     <div class="current-container">
-        <h1>{{ weather_data.city }}</h1>
+        <h2>{{ weather_data.city }}</h2>
 
 
         <div class="temp-description-container">
-            <h2>{{ weather_data.temperature }}</h2>
+            <h4>{{ weather_data.temperature }}</h4>
             <p> | </p>
             <p class="desc">{{weather_data.description }}</p>
         </div>        
@@ -24,7 +24,7 @@
 <!-- 5-day Weather data for each City -->
 
 {% if daily_forecasts %}
-    <h2 class="forecast-title">5-Day Forecasts</h2>
+    <h4 class="forecast-title">5-Day Forecasts</h4>
     <div class="forecast-container">
 
         <!-- for loop to loop through each day in the 5 day list of forecast data -->
@@ -32,7 +32,7 @@
         
         {% for forecast in daily_forecasts %}
             <div class="forecast">
-                <h3>{{ forecast.day }}</h3>
+                <h5>{{ forecast.day }}</h5>
                 <p>{{ forecast.min_temp }}°C - {{ forecast.max_temp }}°C</p>
 
                 <div class="humidity-wind-container">
