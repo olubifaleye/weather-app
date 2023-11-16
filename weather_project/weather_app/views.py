@@ -4,6 +4,7 @@ from datetime import datetime
 import requests
 from django.shortcuts import render
 from django.contrib import messages
+from django.conf import settings
 
 # Create your views here.
 
@@ -11,7 +12,7 @@ from django.contrib import messages
 def index(request):
 
     # load the API_key
-    API_KEY = open("API_KEY", "r").read()
+    API_KEY = settings.API_KEY
 
     # Current weather URL to target
     current_weather_url = "https://api.openweathermap.org/data/2.5/weather?q={}&appid={}"
