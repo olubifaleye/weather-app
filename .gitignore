@@ -163,5 +163,8 @@ cython_debug/
 # Ignore API_KEY
 API_KEY
 
+# Ignore DJANGO_KEY
+DJANGO_KEY
+
 # Ignore Settings.py file
 settings.py
