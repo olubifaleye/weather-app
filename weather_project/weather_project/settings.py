@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
-    "weather_app"
+    'weather_app'
 ]
 
 MIDDLEWARE = [
