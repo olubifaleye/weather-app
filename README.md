@@ -25,3 +25,19 @@ This is a Weather Application built with Python Django and JavaScript. It allows
 
 - The Weather Application is built using Django and JavaScript.
 - Weather data is provided by the OpenWeatherMap API.
+
+# Running Django Project
+
+ - Clone the repository
+ - navigate to the projects directory
+ - install the projects dependancies using:
+
+```pip install -r requirements.txt```
+
+- Then to start the development server, run the following the command:
+
+  ```python manage.py runserver```
+
+  The development server will start, and you can access the app in your web browser at (http://127.0.0.1:8000/).
+
+
