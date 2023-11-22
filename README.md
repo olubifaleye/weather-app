@@ -32,7 +32,7 @@ This is a Weather Application built with Python Django and JavaScript. It allows
  - navigate to the projects directory
  - install the projects dependancies using:
 
-```pip install -r requirements.txt```
+ ```pip install -r requirements.txt```
 
 - Then to start the development server, run the following the command:
 
