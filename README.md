@@ -21,18 +21,18 @@ This is a Weather Application built with Python Django and JavaScript. It allows
 2. Enter a City name in the first search bar, the second search bar is optional.
 3. Click the "Compare Weather" button to fetch and display the current weather information for the specified location(s).
 
-# Acknowledgments
+## Acknowledgments
 
 - The Weather Application is built using Django and JavaScript.
 - Weather data is provided by the OpenWeatherMap API.
 
-# Running Django Project
+## Running Django Project
 
  - Clone the repository
  - navigate to the projects directory
  - install the projects dependancies using:
-
- ```pip install -r requirements.txt```
+ 
+   ```pip install -r requirements.txt```
 
 - Then to start the development server, run the following the command:
 
